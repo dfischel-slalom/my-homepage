@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <div class="avatar-wrap">
+          <!-- tries to load a real photo first; if missing, falls back to the SVG placeholder -->
+          <img src="assets/me.jpeg" alt="Your photo" class="avatar" onerror="this.onerror=null;this.src='assets/avatar.svg'">
+        </div>
+
+        <h1 class="title">Hello, world!</h1>
+        <p class="subtitle">Welcome to my homepage.</p>
+
+        <button class="contact">Contact me</button>
+      </section>
+    </main>
+  </body>
+</html>
