@@ -95,3 +95,55 @@ html,body{
   color: #fff;
   text-align:center;
 }
+
+/* Floating clouds (simple shapes animated left-to-right) */
+.clouds {
+  position: fixed;
+  top: 4vh;
+  left: 0;
+  right: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50px;
+  box-shadow:
+    25px 10px 0 0 #ffffff,
+    -20px 8px 0 0 #ffffff;
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));
+}
+
+.cloud--1 { width: 220px; height: 70px; top: 6vh; left: -30%; transform: translateZ(0); animation: floatClouds 40s linear infinite; }
+.cloud--2 { width: 160px; height: 50px; top: 12vh; left: -40%; transform: translateZ(0); animation: floatClouds 28s linear infinite; opacity: 0.95; }
+.cloud--3 { width: 280px; height: 90px; top: 2vh; left: -60%; transform: translateZ(0); animation: floatClouds 52s linear infinite; opacity: 0.87; }
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+}
+.cloud::before { width: 60%; height: 80%; left: -18%; top: -28%; }
+.cloud::after  { width: 45%; height: 65%; right: -18%; top: -18%; }
+
+@keyframes floatClouds {
+  0%   { transform: translateX(0) scale(1); }
+  50%  { transform: translateX(60vw) scale(1.02); }
+  100% { transform: translateX(130vw) scale(1); }
+}
+
+/* Keep clouds behind main content but above page background */
+.page { position: relative; z-index: 2; }
+.card  { position: relative; z-index: 3; }
+
+@media (max-width: 640px) {
+  .cloud--1 { width: 160px; height: 50px; top: 8vh; animation-duration: 36s; }
+  .cloud--2 { width: 120px; height: 42px; top: 14vh; animation-duration: 24s; }
+  .cloud--3 { width: 200px; height: 65px; top: 4vh; animation-duration: 44s; }
+}
