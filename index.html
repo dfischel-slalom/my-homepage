@@ -17,8 +17,69 @@
         <h1 class="title">Hello, world!</h1>
         <p class="subtitle">Welcome to my homepage.</p>
 
-        <button class="contact">Contact me</button>
+        <button id="contactBtn" class="contact">Contact me</button>
+        <div id="contactPanel" class="contact-panel" hidden>
+          <label class="panel-field"><span>Subject</span>
+            <input id="panelSubject" type="text" maxlength="150" placeholder="Subject">
+          </label>
+          <label class="panel-field"><span>Message</span>
+            <textarea id="panelMessage" rows="5" maxlength="2000" placeholder="Your message..."></textarea>
+          </label>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px;">
+            <button id="panelSend" class="contact">Send</button>
+            <button id="panelCancel" class="contact cancel">Cancel</button>
+          </div>
+        </div>
+        <div id="contactThanks" class="contact-thanks" hidden>
+          Thank you — we'll get back to you shortly.
+        </div>
       </section>
     </main>
+    <script>
+      (function(){
+        const btn = document.getElementById('contactBtn');
+        const panel = document.getElementById('contactPanel');
+        const send = document.getElementById('panelSend');
+        const cancel = document.getElementById('panelCancel');
+        const subj = document.getElementById('panelSubject');
+        const msg = document.getElementById('panelMessage');
+
+        btn.addEventListener('click', function(){
+          panel.hidden = false;
+          subj.focus();
+        });
+
+        cancel.addEventListener('click', function(){
+          panel.hidden = true;
+          subj.value = '';
+          msg.value = '';
+        });
+
+        send.addEventListener('click', function(){
+          const to = 'doug.fischels@slalom.com';
+          const subjectVal = (subj.value || '').trim();
+          const msgVal = (msg.value || '').trim();
+          if (!subjectVal || !msgVal) {
+            alert('Please provide both subject and message.');
+            return;
+          }
+
+          const subjectEnc = encodeURIComponent(subjectVal || '(no subject)');
+          const bodyEnc = encodeURIComponent(msgVal.replace(/\r?\n/g, '\r\n'));
+          const mailto = `mailto:${encodeURIComponent(to)}?subject=${subjectEnc}&body=${bodyEnc}`;
+
+          // show a quick visual confirmation then open mail client
+          panel.hidden = true;
+          subj.value = '';
+          msg.value = '';
+          const thanks = document.getElementById('contactThanks');
+          thanks.hidden = false;
+          // hide the thank-you after a few seconds
+          setTimeout(() => { thanks.hidden = true; }, 6000);
+          // open the mail client
+          window.location.href = mailto;
+        });
+      })();
+    </script>
   </body>
 </html>
