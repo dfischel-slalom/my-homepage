@@ -7,53 +7,44 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: white;
-  background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+.avatar-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto 18px auto;
 }
 
-.page{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:2rem;
-}
-
-.card{
-  text-align:center;
-  background: rgba(255,255,255,0.04);
-  padding:2.5rem 2rem;
-  border-radius:16px;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-  max-width:420px;
-  width:100%;
-  backdrop-filter: blur(6px);
-}
-
-.avatar-wrap{
-  width:150px;
-  height:150px;
-  margin:0 auto 1.25rem auto;
-  border-radius:50%;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:4px solid rgba(255,255,255,0.08);
-  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-}
-
-.avatar{
-  width:100%;
+/* Page background and centered card */
+html,body{
   height:100%;
-  object-fit:cover;
-  display:block;
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #fff;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+}
+
+.page{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
+.card{max-width:520px;width:100%;padding:2.25rem;border-radius:16px;background:var(--card-bg);box-shadow:0 8px 30px rgba(2,6,23,0.6);text-align:center}
+
+.avatar-bg {
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/me.jpeg');
+  background-size: cover;
+  background-position: center center;
+  border-radius: 999px;
+  transition: background-image 200ms ease-in-out, transform 200ms ease;
+  outline: none;
+  display: block;
+}
+
+/* hover/focus swap to the alternate photo */
+.avatar-wrap:hover .avatar-bg,
+.avatar-wrap:focus-within .avatar-bg {
+  background-image: url('assets/me2.jpg');
+  transform: scale(1.02);
 }
 
 .title{
