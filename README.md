@@ -1,19 +1,16 @@
-# My Homepage (simple)
+# My Homepage
 
-This is a minimal static homepage with:
+Static single-page site with a photo card, weather widget, and contact modal.
 
-- Blue gradient background
-- "Hello, world!" intro
-- Circular photo (placeholder at `assets/avatar.svg`) — replace with your photo
-- A `Contact me` button (currently non-functional)
+## Features
+- Weather from Open-Meteo (no API key) with city dropdown (Seattle, LA, Boston, Waterloo), condition icon, wind/temp, and themed background art.
+- Dynamic hero art + gradient that swap with the weather; clear sky also plays `assets/BruceHappy.mp3` (loops, stops when not clear).
+- Contact form opens in a modal, validates subject/message, and launches a mailto link to `doug.fischels@slalom.com` with a brief thank-you toast.
+- Avatar hover/focus swap between `assets/me.jpeg` and `assets/me2.jpg`.
 
-Quick preview (PowerShell):
+## Run locally
+- PowerShell preview: `ii .\index.html` (or open the file directly in a browser).
+- No build step required; everything is static. Keep the `assets/` folder alongside the HTML for images/audio.
 
-```powershell
-ii .\index.html
-```
-
-To use your own photo:
-
-1. Put your image at `assets/me.jpg` (or update the `<img>` `src` in `index.html`).
-2. The page will fall back to the SVG placeholder if `assets/me.jpg` is missing.
+## Notes for deployment
+- Works on static hosts like Vercel. Ensure `assets/BruceHappy.mp3`, `assets/me.jpeg`, and `assets/me2.jpg` are deployed. The weather API is public and client-side. Autoplay may need a user click depending on browser policy.
