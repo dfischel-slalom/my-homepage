@@ -60,11 +60,29 @@
     fog: { bg1: '#0f172a', bg2: '#334155' }
   };
 
+  const happyAudio = new Audio('assets/BruceHappy.mp3');
+  happyAudio.loop = true;
+  happyAudio.preload = 'auto';
+
+  let hasTriedPlay = false;
+
   function setStatus(text, loading = false) {
     statusEl.textContent = text;
     statusEl.hidden = false;
     statusEl.style.opacity = loading ? '0.85' : '1';
     metricsEl.hidden = loading;
+  }
+
+  function handleAudio(themeKey) {
+    if (themeKey === 'clear') {
+      if (!hasTriedPlay) hasTriedPlay = true;
+      happyAudio.play().catch(() => {
+        /* Autoplay may be blocked; will retry on next user interaction */
+      });
+    } else {
+      happyAudio.pause();
+      happyAudio.currentTime = 0;
+    }
   }
 
   function themeForCode(code) {
@@ -86,6 +104,7 @@
     root.style.setProperty('--bg2', theme.bg2);
     Object.keys(bgThemes).forEach(key => body.classList.remove(`weather-${key}`));
     body.classList.add(`weather-${themeKey}`);
+    handleAudio(themeKey);
   }
 
   function buildApiUrl(location) {
@@ -131,6 +150,11 @@
 
   refreshBtn.addEventListener('click', fetchWeather);
   locationSelect.addEventListener('change', e => setLocation(e.target.value));
+  document.addEventListener('click', () => {
+    if (hasTriedPlay && happyAudio.paused) {
+      happyAudio.play().catch(() => {});
+    }
+  }, { once: true });
 
   setLocation(currentLocationKey);
 })();
