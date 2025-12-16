@@ -23,6 +23,30 @@
         <h1 class="title">Hello world!</h1>
         <p class="subtitle">Welcome to my homepage.</p>
 
+        <section class="weather" aria-live="polite">
+          <div class="weather__top">
+            <div class="weather__location">
+              <span class="weather__label">Seattle, WA</span>
+              <div class="weather__condition-row">
+                <span id="weatherIcon" class="weather__icon" aria-hidden="true">--</span>
+                <span id="weatherCondition" class="weather__condition">--</span>
+              </div>
+            </div>
+            <button id="weatherRefresh" class="weather__refresh" type="button">Refresh</button>
+          </div>
+          <div id="weatherStatus" class="weather__status">Loading current weather…</div>
+          <div class="weather__metrics" id="weatherMetrics" hidden>
+            <div class="weather__metric">
+              <span class="weather__label">Temperature</span>
+              <span id="weatherTemp" class="weather__value">--</span>
+            </div>
+            <div class="weather__metric">
+              <span class="weather__label">Wind</span>
+              <span id="weatherWind" class="weather__value">--</span>
+            </div>
+          </div>
+        </section>
+
         <button id="contactBtn" class="contact">Contact me</button>
         <div id="contactPanel" class="contact-panel" hidden>
           <label class="panel-field"><span>Subject</span>
@@ -41,6 +65,7 @@
         </div>
       </section>
     </main>
+    <script src="weather.js"></script>
     <script>
       // Fallback: ensure avatar swaps even if CSS hover is overridden
       (function(){
