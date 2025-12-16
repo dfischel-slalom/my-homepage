@@ -169,6 +169,10 @@ body.weather-fog .weather-visual{background-image:var(--hero-fog)}
   cursor:pointer;
   appearance:none;
 }
+.weather__select option{
+  color:#0b1220;
+  background:#f8fafc;
+}
 .weather__select:focus{outline:2px solid rgba(255,255,255,0.4);outline-offset:2px}
 .weather__label{
   font-size: 0.85rem;
